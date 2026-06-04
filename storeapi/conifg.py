@@ -12,6 +12,7 @@ class BaseConfig(BaseSettings):
 class GlobalConfig(BaseConfig):
     DATABASE_URL: Optional[str] = None
     DB_FORCE_ROLL_BACK: bool = False
+    JWT_SECRET_KEY: Optional[str] = None
 
 
 class DevConfig(GlobalConfig):
@@ -25,6 +26,7 @@ class ProdConfig(GlobalConfig):
 class TestConfig(GlobalConfig):
     DATABASE_URL: Optional[str] = "sqlite:///test.db"
     DB_FORCE_ROLL_BACK: bool = True
+    JWT_SECRET_KEY: str = "test-secret-key"
     model_config = SettingsConfigDict(env_prefix="TEST_")
 
 
